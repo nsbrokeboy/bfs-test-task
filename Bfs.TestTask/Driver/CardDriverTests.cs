@@ -167,6 +167,10 @@ public class CardDriverTests
         var second = await enumerator.MoveNextAsync() ? enumerator.Current : default;
 
         Assert.Equal(EjectResult.Retracted, second);
+        
+        // пару раз упал тест т.к.
+        // Range:  (00:00:04.9000000 - 00:00:05.1000000)
+        // Actual: 00:00:05.1050393 - кажется некритично
         Assert.InRange(DateTime.UtcNow - currentTime, TimeSpan.FromMilliseconds(4900), TimeSpan.FromMilliseconds(5100));
         
         var lastRead = await enumerator.MoveNextAsync();
